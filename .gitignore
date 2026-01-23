@@ -1,0 +1,82 @@
+react-frontend/.gitignore
+# Fichiers de configuration système
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+Zone.Identifier
+__Pycache__
+
+# Fichiers de sauvegarde et fichiers temporaires
+*.bak
+*.swp
+*~
+
+# Environnements virtuels
+venv/
+
+.env
+.flake8
+HOB_env
+__pycache__
+__init__.py
+
+
+node_modules
+zone.identifier
+package-lock.json
+
+HOB_env
+# Dépendances Node
+/node_modules/
+
+# Base de données
+/db.sqlite3
+
+# Bytecode Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Fichiers de configuration d'environnement
+.env
+/static_in_env
+
+# Dossiers de médias
+/media_root/
+
+# Fichiers et dossiers spécifiques à l'IDE
+.idea/
+.vscode/
+*.swp
+
+# Fichiers de log
+*.log
+
+# Dossiers de build
+/build/
+/dist/
+
+# Autres fichiers et dossiers
+*.tar.gz
+*.zip
+*.sqlite3
+
+
