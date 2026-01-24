@@ -1,100 +1,98 @@
-🌿 Présentation
-<p align="center"> <img src="public/images/logo-villa-bliss.jpeg" alt="Villa Bliss Logo"/> <h1 align="center">Votre havre de paix en ligne</h1> <p align="center"></p> <p align="center"> <b>:star: Bienvenue à la Villa Bliss :star:</b> </p> </p>
-
-Villa Bliss est une plateforme dédiée au bien-être et à l’équilibre personnel.
-Elle propose des contenus et ressources autour du développement personnel, de la sérénité et du mieux-être au quotidien, dans une ambiance douce et apaisante.
+<p align="center">
+  <img 
+    src="public/images/logo-villa-bliss.jpeg" 
+    alt="Logo Villa Bliss" 
+    width="520"
+  />
+</p>
 
 ---
 
-📋 Sommaire
+Villa Bliss est un espace en ligne dédié au **bien-être naturel**, à la **sérénité** et à l’**équilibre intérieur**. 
 
-🔨 Installation
+Le tout dans une ambiance **douce, apaisante et accessible à tous**, sans prérequis.
 
-🛠️ Configuration
+Vous y trouverez :
 
-💽 Base de données
+- 🌿 des conseils en aromathérapie  
+- 🍵 des recettes de tisanes et préparations naturelles  
+- 🌸 des contenus pour ralentir, respirer et prendre soin de soi  
 
-🔒 Sécurité et paiements
 
-📊 Outils utilisés
+<p align="center">───── ✧ ─────</p>
 
-🏃 Lancer l’application
 
-©️ Licence
+## 🌼 L’esprit Villa Bliss
+
+Villa Bliss a été imaginée comme un **lieu de ressourcement**,  
+où l’on vient chercher :
+
+- Un moment de calme  
+- Des pratiques simples et naturelles  
+- Une approche bienveillante du bien-être  
+
+Ici, pas de performance, pas de pression.  
+Juste l’envie de se reconnecter à l’essentiel.
+
+<p align="center">───── ✧ ─────</p>
+
+
+## 🌿 Ce que vous trouverez sur le site
+
+### 🌱 Aromathérapie  
+Comprendre les huiles essentielles et leurs usages au quotidien.
+
+### 🍃 Tisanes & recettes naturelles  
+Des préparations simples pour accompagner les petits maux ou favoriser la détente.
+
+### 🧘 Conseils bien-être  
+Rituels, inspirations et pratiques pour cultiver l’équilibre intérieur.
+
+<p align="center">───── ✧ ─────</p>
+
+
+## 🌸 Un espace simple et sécurisé
+
+Villa Bliss est un site de **contenus et de partage**.  
+Aucune transaction, aucun paiement, aucune donnée sensible n’est collectée.
+
+L’objectif est avant tout de proposer un **espace de confiance**,  
+orienté vers le **bien-être et la transmission**.
+
+<p align="center" style="color:#8FAF9A;">───── ✧ ─────</p>
+
+
+## 🛠️ Technologies utilisées
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Frontend-React-2E8B8B?style=flat&logo=react&logoColor=white" />
+  <img src="https://img.shields.io/badge/Backend-Django-2F6F4E?style=flat&logo=django&logoColor=white" />
+  <img src="https://img.shields.io/badge/Style-Bootstrap-6B5CA5?style=flat&logo=bootstrap&logoColor=white" />
+  <img src="https://img.shields.io/badge/Base%20de%20données-SQLite-4F4F4F?style=flat&logo=sqlite&logoColor=white" />
+</p>
+
+
+<p align="center" style="color:#7A8F86;">
+  <i>Des technologies simples et fiables, au service d’une expérience fluide et apaisante.</i>
+</p>
+
+<p align="center" style="color:#8FAF9A;">─ · ✧ · ─</p>
+
 ---
 
-```
+## 🌱 Projet en perpétuelle évolution
+
+Villa Bliss évoluera au fil du temps, en fonction :
+
+- Des envies créatives  
+- Des inspirations naturelles  
+- Et des besoins des visiteurs  
 
 
-🔨 1. Installation
+## 👩‍💻 Création
 
-Avant de commencer, assurez-vous d’avoir les prérequis suivants :
-
-Node.js >= 12
-
-Python >= 3.8
-
-pip (gestionnaire de dépendances Python)
-
-Cloner le projet
-git clone https://github.com/Holbiwan/Villa-Bliss.git
-cd Villa-Bliss
-
-Installer les dépendances
-npm install
-pip install -r requirements.txt
-
-```
-
-```
-🛠️ 2. Configuration
-
-Créez ou modifiez le fichier .env afin d’y renseigner vos variables d’environnement (clés, ports, paramètres spécifiques).
-
-```
-
-```
-💽 3. Base de données
-
-La plateforme utilise SQLite, une base de données légère et efficace, adaptée aux projets de petite et moyenne taille.
-Assurez-vous que la base est correctement initialisée avant le lancement de l’application.
-
-```
-```
-🔒 4. Sécurité et paiements
-
-Aucun système de paiement n’est actif pour le moment.
-Une intégration PayPal pourra être envisagée ultérieurement si le projet évolue.
-```
-
-```
-📊 5. Outils utilisés
-<div align="center"> <img src="https://skillicons.dev/icons?i=python,html,css,js,react,nodejs,django,sqlite,bootstrap" /> </div>
-
-```
+**Sabrina P**  
+GitHub : **DataSab**
 
 
-```
-🏃 6. Lancer l’application
-Frontend
-npm start
-
-Backend (Django)
-python3 manage.py runserver
-
-Administration
-
-Pour ajouter ou gérer du contenu, accédez au panneau d’administration :
-👉 http://localhost:8000/admin
-
-```
-
-```
-
-©️ 7. Licence
-
-Ce projet est distribué sous licence MIT.
-```
-👩‍💻 Auteure
-
-**Author:** Sabrina P - [Github](https://github.com/DataSab)
+<p align="center">© 2026 • Villa Bliss</p>
