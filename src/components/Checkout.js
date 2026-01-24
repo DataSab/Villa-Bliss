@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {Dimmer, Loader, Image, Message, Segment, Item, Label, Form, Select, Divider, Header, Container, Button} from 'semantic-ui-react';
 import {connect} from 'react-redux';
-import { Redirect, Link } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 import { authAxios } from '../utils';
 import { addressListURL,checkoutURL, addCouponURL, orderSummaryURL } from '../constants';
 import {CardElement, injectStripe, StripeProvider, Elements} from 'react-stripe-elements';
@@ -21,13 +21,8 @@ const OrderPreview = ({data}) => {
                 <Item.Content>
                 <Item.Header>{order_item.item.title} X {order_item.quantity}</Item.Header>
                 <Item.Extra>
-                    { order_item.item.discount_price && (
-                    <Label color='green' >
-                        On discount 
-                    </Label>
-                    )}
+                    <Label color='teal'>Gratuit</Label>
                     </Item.Extra>
-                    ${order_item.final_price}
                 </Item.Content>
               </Item>
             )
@@ -37,13 +32,7 @@ const OrderPreview = ({data}) => {
 
       <Item.Group>
           <Item.Content>
-            <Item.Header>Order total : ${data.total}</Item.Header>
-            {data.coupon && (
-                <Label color="green" style = {{marginLeft : "10px"}}>
-                    Coupon code : {data.coupon.code} for 
-                    ${data.coupon.amount}
-                </Label>
-            )}
+            <Item.Header>Ressources sélectionnées : {data.order_items ? data.order_items.length : 0}</Item.Header>
           </Item.Content>
       </Item.Group>
       </React.Fragment>
@@ -231,7 +220,7 @@ function Checkout(props) {
         setVisible(!visible);
     }
 
-    if(!isAuthenticated) return <Redirect to="/login" />
+    if(!isAuthenticated) return <Navigate to="/login" replace />
 
     return (
         success ? (

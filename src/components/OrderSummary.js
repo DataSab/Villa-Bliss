@@ -5,7 +5,7 @@ import {orderSummaryURL, updateItemQuantityURL, deleteItemURL} from '../constant
 import { Container, Message, Segment , Item, Dimmer, Loader, Image, Button, Icon, Label, Table} from 'semantic-ui-react';
 import {authAxios} from '../utils';
 import {addToCartURL} from '../constants';
-import {Redirect, Link} from 'react-router-dom';
+import {Navigate, Link} from 'react-router-dom';
 import { fetchCart } from '../store/actions/cart';
 
 function OrderSummary(props) {
@@ -102,7 +102,7 @@ const handleRemoveItem = (id) =>{
     })
 }
     
-if(!isAuthenticated) { return <Redirect to="/login" /> }
+if(!isAuthenticated) { return <Navigate to="/login" replace /> }
     return (
         <Container style={{ 'margin-top' : '50px'}}>
             {error && (
@@ -125,10 +125,9 @@ if(!isAuthenticated) { return <Redirect to="/login" /> }
             <Table.Header>
             <Table.Row>
                 <Table.HeaderCell>Item #</Table.HeaderCell>
-                <Table.HeaderCell>Item name</Table.HeaderCell>
-                <Table.HeaderCell>Item price</Table.HeaderCell>
-                <Table.HeaderCell>Item quantity</Table.HeaderCell>
-                <Table.HeaderCell>Item total price</Table.HeaderCell>
+                <Table.HeaderCell>Nom de la ressource</Table.HeaderCell>
+                <Table.HeaderCell>Quantité</Table.HeaderCell>
+                <Table.HeaderCell>Actions</Table.HeaderCell>
             </Table.Row>
             </Table.Header>
 
@@ -143,21 +142,15 @@ if(!isAuthenticated) { return <Redirect to="/login" /> }
                     {order_item.item.title} - { " "}
                     {renderVariations(order_item)}
                 </Table.Cell>
-                <Table.Cell>
-                    {
-                    order_item.item.discount_price ? 
-                    <p>${order_item.item.discount_price}</p>:
-                    <p>${order_item.item.price}</p>}
-                    </Table.Cell> 
 
                     <Table.Cell textAlign="center">
-                        <Icon 
+                        <Icon
                         name="minus"
                         style = {{float:'left', cursor:'pointer'}}
                         onClick = {()=>handleRemoveQuantityFromCart(order_item.item.slug, order_item.item_variations)}
                         />
                         {order_item.quantity}
-                        <Icon 
+                        <Icon
                         name="plus"
                         onClick = {()=> handleAddtoCart(order_item.item.slug, order_item.item_variations)}
                         style = {{float:'right', cursor:'pointer'}}
@@ -165,41 +158,30 @@ if(!isAuthenticated) { return <Redirect to="/login" /> }
                         </Table.Cell>
 
                     <Table.Cell>
-                    {order_item.item.discount_price &&( 
-                    <Label color="green" ribbon>On discount</Label>)}
-                    ${order_item.final_price}
-                    <Icon 
+                    <Icon
                     name="trash"
                     color = "red"
                     onClick = {()=> handleRemoveItem(order_item.id)}
-                    style ={{float : 'right' , cursor : 'pointer'}} />
-                    </Table.Cell>       
+                    style ={{cursor : 'pointer'}} />
+                    </Table.Cell>
                 </Table.Row>
             )):
-            <Table.Row style={{marginTop  : '50px'}} >No items in your cart</Table.Row>
+            <Table.Row style={{marginTop  : '50px'}} >Aucune ressource dans votre sélection</Table.Row>
             }
-            <Table.Row>
-                <Table.Cell />
-                <Table.Cell />
-                <Table.Cell />
-                <Table.Cell textAlign="right" colSpan="2">
-                    Order Total: ${data.total}
-                </Table.Cell>
-                </Table.Row>
 
             </Table.Body> 
-        { data.order_items && data.order_items.length != 0 &&  ( 
+        { data.order_items && data.order_items.length != 0 &&  (
             <Table.Footer>
                 <Table.Row>
-                <Table.HeaderCell colSpan="5">
+                <Table.HeaderCell colSpan="4">
                     <Link to="/checkout">
-                    <Button floated="right" color="yellow">
-                        Checkout
+                    <Button floated="right" color="orange">
+                        Télécharger les ressources sélectionnées
                     </Button>
                     </Link>
                 </Table.HeaderCell>
                 </Table.Row>
-             </Table.Footer>   
+             </Table.Footer>
         )}
             </Table>
           

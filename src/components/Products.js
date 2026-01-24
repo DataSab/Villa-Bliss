@@ -1,198 +1,265 @@
 import React, { useState, useEffect } from 'react'
-import {Menu, Container, Grid, Dimmer, Loader, Image, Message, Header, Segment, Card, Button, Label, Form, Checkbox, Select, Divider, Table} from 'semantic-ui-react';
+import {Menu, Container, Grid, Dimmer, Loader, Image, Message, Header, Segment, Card, Icon} from 'semantic-ui-react';
 import {connect} from 'react-redux';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { productFilterURL} from '../constants';
+import { productListURL} from '../constants';
 
 
-function Products() {
+function Ressources() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    const [activeItemCategory, setActiveItemCategory ] = useState('allCategories');
-    const [activeItemPrice, setActiveItemPrice] = useState({
-        text : 'allPrices',
-        min : 0,
-        max : 500
-    });
-    const [products, setProducts] = useState([]);
+    const [activeCategory, setActiveCategory] = useState('all');
+    const [ressources, setRessources] = useState([]);
+    const [filteredRessources, setFilteredRessources] = useState([]);
 
     useEffect(() => {
-        handleFetchClothes();
-    }, [activeItemCategory, activeItemPrice])
+        fetchRessources();
+    }, [])
 
+    useEffect(() => {
+        filterRessources();
+    }, [activeCategory, ressources])
 
-    const handleFetchClothes = () => {
-    //     let min = 0;
-    //     let max = 0;
-
-    //    if(activeItemPrice === 'allPrices'){
-    //        min = 0;
-    //        max = 300;
-    //    }
-    //    else if(activeItemPrice == '<100'){
-    //         min = 0;
-    //         max = 100;
-    //    }
-
-    //    else if(activeItemPrice == '100-200'){
-    //        min = 100;
-    //        max = 200;
-    //    }
-    //    else {
-    //        min = 200;
-    //        max = 500;
-    //    }
-
+    const fetchRessources = () => {
         setLoading(true);
-        // console.log(address_type);
-        const category = activeItemCategory == 'shirt' ? 
-        'S' :  activeItemCategory == 'sportwear' ? 'SW' : activeItemCategory == 'outwear' ? 'OW' : 'all' ;
-
-        axios.get(productFilterURL(category, activeItemPrice.min, activeItemPrice.max)
-        ).then(res => {
-            setProducts(res.data);
+        axios.get(productListURL).then(res => {
+            setRessources(res.data);
+            setFilteredRessources(res.data);
             setLoading(false);
-            console.log(res.data);
         }).catch(error => {
-            setError(error.response.data.message);
+            console.error('Erreur chargement ressources:', error);
+            setError('Impossible de charger les ressources');
             setLoading(false);
         })
     }
- 
-    const handleCategoryItemClick = (name) =>
-    { 
-        setActiveItemCategory(name);
+
+    const filterRessources = () => {
+        if (activeCategory === 'all') {
+            setFilteredRessources(ressources);
+        } else {
+            const filtered = ressources.filter(r =>
+                r.category && r.category.toLowerCase().includes(activeCategory.toLowerCase())
+            );
+            setFilteredRessources(filtered);
+        }
     }
 
-    const handlePriceItemClick  = (text,min, max) => {
-        setActiveItemPrice(prevState => ({
-            ...prevState,
-            text:text,
-            min:min,
-            max: max
-        }));
+    const handleCategoryClick = (category) => {
+        setActiveCategory(category);
     }
 
-    
-    const renderProducts = () => {
-    return (
-    <React.Fragment>
-    <Card.Group style={{'marginTop' : '20px'}}>
+    const getCategoryIcon = (category) => {
+        const icons = {
+            'huiles': 'leaf',
+            'meditation': 'sun outline',
+            'tisanes': 'coffee',
+            'yoga': 'heartbeat',
+            'aromatherapie': 'magic',
+            'naturopathie': 'tree'
+        };
+        return icons[category] || 'book';
+    }
 
-    {products && products.length > 0 ? products.map(product => (
-        <Card key={product.id}>
-        <Card.Content>
-        <Image floated="right" size="tiny" src={product.image} wrapped/>
-        <Link to={`/product/${product.id}`}><Card.Header>{product.title}</Card.Header></Link>
-        <Card.Meta style={{marginTop : '5px'}}>{product.category}
-        <Label style={{ marginLeft: '5px'}} color={product.label =='primary'? 'blue' : product.label=='secondary' ? 'yellow' : 'orange'}>{product.label}</Label>
-        </Card.Meta>
-        <Card.Description>{product.description}</Card.Description>
-        </Card.Content>
-        <Card.Content extra>
-            <Card.Header>${product.price}
-            {product.discount_price && <Label as="a" color="green" ribbon="right">
-                on discount ${product.discount_price}
-                </Label>
-            }
-            </Card.Header>
-        </Card.Content>
-       
-        </Card>
-    )) : ( <p>No items matching your category</p> )}
-    </Card.Group>
-    </React.Fragment>
-    )}
+    const renderRessources = () => {
+        return (
+            <React.Fragment>
+                <Card.Group itemsPerRow={2} stackable style={{'marginTop' : '20px'}}>
 
-   
+                {filteredRessources && filteredRessources.length > 0 ? filteredRessources.map(ressource => (
+                    <Card key={ressource.id} as={Link} to={`/product/${ressource.id}`}>
+                        <Image src={ressource.image || '/images/default-resource.jpg'} wrapped ui={false} />
+                        <Card.Content>
+                            <Card.Header style={{
+                                fontFamily: 'Cormorant Garamond, serif',
+                                fontSize: '1.5rem',
+                                color: '#000000'
+                            }}>
+                                {ressource.title}
+                            </Card.Header>
+                            <Card.Meta style={{
+                                color: '#8B6914',
+                                fontWeight: 600,
+                                marginTop: '0.5rem'
+                            }}>
+                                <Icon name={getCategoryIcon(activeCategory)} />
+                                {ressource.category}
+                            </Card.Meta>
+                            <Card.Description style={{
+                                marginTop: '1rem',
+                                color: '#2d2d2d'
+                            }}>
+                                {ressource.description}
+                            </Card.Description>
+                        </Card.Content>
+                        <Card.Content extra>
+                            <Icon name='download' />
+                            Télécharger la ressource
+                        </Card.Content>
+                    </Card>
+                )) : (
+                    <Segment placeholder textAlign='center' style={{ width: '100%', padding: '3rem' }}>
+                        <Header icon style={{ color: '#8B6914' }}>
+                            <Icon name='search' style={{ color: '#8B6914' }} />
+                            Aucune ressource dans cette catégorie
+                        </Header>
+                        <p style={{ fontSize: '1.1rem', color: '#2d2d2d' }}>
+                            Les guides arrivent bientôt. Revenez nous voir prochainement !
+                        </p>
+                    </Segment>
+                )}
+                </Card.Group>
+            </React.Fragment>
+        )
+    }
+
+
     return (
+        <Container style={{ marginTop: '2rem', marginBottom: '2rem' }}>
+            <Header as='h1' textAlign='center' style={{
+                fontFamily: 'Cormorant Garamond, serif',
+                fontSize: '3rem',
+                background: 'linear-gradient(135deg, #D97F3D 0%, #F5A855 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                marginBottom: '1rem'
+            }}>
+                Nos Ressources Bien-Être
+            </Header>
+            <p style={{
+                textAlign: 'center',
+                fontSize: '1.2rem',
+                color: '#2d2d2d',
+                marginBottom: '3rem',
+                maxWidth: '700px',
+                margin: '0 auto 3rem auto'
+            }}>
+                Explorez nos guides et fiches pratiques pour un bien-être naturel au quotidien
+            </p>
+
             <Grid container divided columns={2} >
                 <Grid.Row columns={1}>
                     <Grid.Column>
                     {error && (
-                    <Message negative>
-                    <Message.Header>There was some error </Message.Header>
-                    <p>{JSON.stringify(error)}</p>
-                    </Message> 
+                        <Message negative>
+                            <Message.Header>Une erreur est survenue</Message.Header>
+                            <p>{error}</p>
+                        </Message>
                     )}
 
                     {loading && (
-                    <Segment>
-                        <Dimmer active inverted>
-                        <Loader size='mini'>Loading</Loader>
-                    </Dimmer>
-                    <Image src="/images/wireframe/short-paragraph.png" />
-                    </Segment>
+                        <Segment>
+                            <Dimmer active inverted>
+                                <Loader size='large'>Chargement des ressources...</Loader>
+                            </Dimmer>
+                            <Image src="/images/wireframe/short-paragraph.png" />
+                        </Segment>
                     )}
-
                     </Grid.Column>
                 </Grid.Row>
 
                 <Grid.Row>
-                    <Grid.Column width={6}>
-                    <Menu pointing vertical>
-                        <Menu.Item
-                        name="All"
-                        active={activeItemCategory=='allCategories'}
-                        onClick={()=>handleCategoryItemClick('allCategories')}
-                        />
-                        <Menu.Item
-                        name='Shirt'
-                        active={activeItemCategory === 'shirt'}
-                        onClick={() => handleCategoryItemClick("shirt")}
-                        />
-                        <Menu.Item
-                        name='Sport wear'
-                        active={activeItemCategory === 'sportwear'}
-                        onClick={() => handleCategoryItemClick('sportwear')}
-                        />
-                        <Menu.Item
-                        name="Outwear"
-                        active={activeItemCategory === 'outwear'}
-                        onClick = {()=>handleCategoryItemClick("outwear")}
-                        />
-                    </Menu>
-
-                    <Menu pointing vertical>
-                        <Menu.Item
-                        name="All price ranges"
-                        active={activeItemPrice.text =='allPrices'}
-                        onClick={()=>handlePriceItemClick('allPrices', 0, 500)}
-                        />
-                        <Menu.Item
-                        name='Less than $100'
-                        active={activeItemPrice.text === '<100'}
-                        onClick={() => handlePriceItemClick("<100", 0, 100)}
-                        />
-                        <Menu.Item
-                        name='$100 to $200'
-                        active={activeItemPrice.text === '100-200'}
-                        onClick={() => handlePriceItemClick('100-200', 100, 200)}
-                        />
-                        <Menu.Item
-                        name="Greater than $200"
-                        active={activeItemPrice.text === '>200'}
-                        onClick = {()=>handlePriceItemClick(">200", 200, 500)}
-                        />
-                    </Menu>
+                    <Grid.Column width={5}>
+                        <Header as='h3' style={{
+                            fontFamily: 'Cormorant Garamond, serif',
+                            color: '#000000',
+                            marginBottom: '1.5rem'
+                        }}>
+                            <Icon name='filter' style={{ color: '#D97F3D' }} />
+                            Catégories
+                        </Header>
+                        <Menu pointing vertical fluid>
+                            <Menu.Item
+                                name="Toutes les ressources"
+                                active={activeCategory === 'all'}
+                                onClick={() => handleCategoryClick('all')}
+                                style={{
+                                    fontWeight: activeCategory === 'all' ? 600 : 400
+                                }}
+                            >
+                                <Icon name='grid layout' />
+                                Toutes les ressources
+                            </Menu.Item>
+                            <Menu.Item
+                                name='Huiles Essentielles'
+                                active={activeCategory === 'huiles'}
+                                onClick={() => handleCategoryClick('huiles')}
+                                style={{
+                                    fontWeight: activeCategory === 'huiles' ? 600 : 400
+                                }}
+                            >
+                                <Icon name='leaf' />
+                                Huiles Essentielles
+                            </Menu.Item>
+                            <Menu.Item
+                                name='Méditation'
+                                active={activeCategory === 'meditation'}
+                                onClick={() => handleCategoryClick('meditation')}
+                                style={{
+                                    fontWeight: activeCategory === 'meditation' ? 600 : 400
+                                }}
+                            >
+                                <Icon name='sun outline' />
+                                Méditation
+                            </Menu.Item>
+                            <Menu.Item
+                                name="Tisanes & Infusions"
+                                active={activeCategory === 'tisanes'}
+                                onClick={() => handleCategoryClick('tisanes')}
+                                style={{
+                                    fontWeight: activeCategory === 'tisanes' ? 600 : 400
+                                }}
+                            >
+                                <Icon name='coffee' />
+                                Tisanes & Infusions
+                            </Menu.Item>
+                            <Menu.Item
+                                name="Yoga"
+                                active={activeCategory === 'yoga'}
+                                onClick={() => handleCategoryClick('yoga')}
+                                style={{
+                                    fontWeight: activeCategory === 'yoga' ? 600 : 400
+                                }}
+                            >
+                                <Icon name='heartbeat' />
+                                Yoga
+                            </Menu.Item>
+                            <Menu.Item
+                                name="Aromathérapie"
+                                active={activeCategory === 'aromatherapie'}
+                                onClick={() => handleCategoryClick('aromatherapie')}
+                                style={{
+                                    fontWeight: activeCategory === 'aromatherapie' ? 600 : 400
+                                }}
+                            >
+                                <Icon name='magic' />
+                                Aromathérapie
+                            </Menu.Item>
+                            <Menu.Item
+                                name="Naturopathie"
+                                active={activeCategory === 'naturopathie'}
+                                onClick={() => handleCategoryClick('naturopathie')}
+                                style={{
+                                    fontWeight: activeCategory === 'naturopathie' ? 600 : 400
+                                }}
+                            >
+                                <Icon name='tree' />
+                                Naturopathie
+                            </Menu.Item>
+                        </Menu>
                     </Grid.Column>
 
-                    <Grid.Column width={10}>
-                        <Header>Items</Header>
-                        {renderProducts()}
-                  
+                    <Grid.Column width={11}>
+                        {renderRessources()}
                     </Grid.Column>
                 </Grid.Row>
-                
+
             </Grid>
-    
+        </Container>
     )
 }
 
 const mapStateToProps = (state) => {
-    return {
-       
-    }
+    return {}
 }
-export default connect(mapStateToProps)(Products)
+export default connect(mapStateToProps)(Ressources)

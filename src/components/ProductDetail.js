@@ -119,29 +119,24 @@ function ProductDetail(props) {
                 header={product.title}
                 meta={
                     <React.Fragment>
-                        <b>${product.price}</b>
-                        {product.discount_price && (
-                        <Label color='green' >
-                            On discount ${ product.price - product.discount_price }
-                        </Label>
-                        )}
+                        <Label color='teal'>Gratuit</Label>
                         <Label color={
-                            product.label === 'primary' ? 'blue' : product.label === 'secondary' ? 'yellow' : 'olive' 
+                            product.label === 'primary' ? 'blue' : product.label === 'secondary' ? 'yellow' : 'olive'
                         } > {product.label} </Label>
                         </React.Fragment>
                 }
                 description={product.description}
                 extra={(
-                    <Button   
+                    <Button
                     fluid
-                    color="yellow"
+                    color="orange"
                     floated="right"
                     icon
                     labelPosition="right"
                     onClick = {handleFormToggle}
                     >
-                    Add to cart
-                    <Icon name='cart plus' />
+                    Télécharger la ressource
+                    <Icon name='download' />
                     </Button>
                 )}
             />

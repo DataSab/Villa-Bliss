@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from 'react-router-dom';
-import thunk from 'redux-thunk';
+import { thunk } from 'redux-thunk';
 import { combineReducers, compose, createStore, applyMiddleware } from 'redux';
 import authReducer from './store/reducers/authReducer';
 import cartReducer from './store/reducers/cartReducer';

@@ -1,0 +1,318 @@
+/* ========================================
+   VILLA BLISS - THÈME PERSONNALISÉ
+   Ce fichier écrase Semantic UI avec le design du logo
+   ======================================== */
+
+/* Variables CSS basées sur le logo */
+:root {
+  /* Couleurs principales */
+  --vb-dark: #000000;
+  --vb-dark-soft: #1a1a1a;
+  --vb-dark-medium: #2d2d2d;
+
+  /* Ambre/Orange */
+  --vb-amber-dark: #D97F3D;
+  --vb-amber: #E89547;
+  --vb-amber-light: #F5A855;
+  --vb-amber-pale: #FFBD7F;
+
+  /* Vert olive/sauge */
+  --vb-olive: #6B8E23;
+  --vb-sage: #8B9D6B;
+  --vb-sage-light: #9CAF88;
+
+  /* Crème/Beige */
+  --vb-cream: #F5E6D3;
+  --vb-beige: #E8DCC8;
+
+  /* Bronze */
+  --vb-bronze: #8B6914;
+}
+
+/* ========================================
+   NAVBAR - NOIR LUXUEUX
+   ======================================== */
+.ui.menu {
+  background: var(--vb-dark) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5) !important;
+  margin: 0 !important;
+  padding: 1rem 0 !important;
+}
+
+.ui.menu .item {
+  color: var(--vb-cream) !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 1.05rem !important;
+  padding: 1rem 1.5rem !important;
+  transition: all 0.3s ease !important;
+  border-radius: 0 !important;
+}
+
+.ui.menu .item:hover {
+  background: linear-gradient(135deg, var(--vb-amber-dark) 0%, var(--vb-amber) 100%) !important;
+  color: white !important;
+  transform: translateY(-2px);
+}
+
+.ui.menu .item.header {
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* Dropdown dans navbar */
+.ui.menu .ui.dropdown .menu {
+  background: var(--vb-dark-soft) !important;
+  border: 2px solid var(--vb-amber-dark) !important;
+  border-radius: 8px !important;
+  margin-top: 0.5rem !important;
+}
+
+.ui.menu .ui.dropdown .menu .item {
+  color: var(--vb-cream) !important;
+  border-bottom: 1px solid rgba(217, 127, 61, 0.2) !important;
+}
+
+.ui.menu .ui.dropdown .menu .item:hover {
+  background: var(--vb-amber-dark) !important;
+  color: white !important;
+}
+
+/* ========================================
+   BOUTONS - GRADIENT AMBRE
+   ======================================== */
+.ui.button,
+button.ui.button,
+.button {
+  background: linear-gradient(135deg, var(--vb-amber-dark) 0%, var(--vb-amber-light) 100%) !important;
+  color: white !important;
+  padding: 14px 28px !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 16px rgba(217, 127, 61, 0.3) !important;
+  cursor: pointer !important;
+}
+
+.ui.button:hover,
+button.ui.button:hover,
+.button:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 24px rgba(217, 127, 61, 0.4) !important;
+  background: linear-gradient(135deg, var(--vb-amber) 0%, var(--vb-amber-pale) 100%) !important;
+}
+
+.ui.button:active {
+  transform: translateY(0) !important;
+}
+
+/* Bouton secondaire */
+.ui.button.secondary {
+  background: linear-gradient(135deg, var(--vb-olive) 0%, var(--vb-sage-light) 100%) !important;
+}
+
+/* ========================================
+   CARDS & ITEMS - ÉLÉGANTS
+   ======================================== */
+.ui.items > .item {
+  background: white !important;
+  padding: 2rem !important;
+  margin: 1.5rem 0 !important;
+  border-radius: 16px !important;
+  border: 2px solid var(--vb-beige) !important;
+  box-shadow: 0 4px 20px rgba(217, 127, 61, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+.ui.items > .item:hover {
+  border-color: var(--vb-amber) !important;
+  box-shadow: 0 12px 40px rgba(217, 127, 61, 0.25) !important;
+  transform: translateY(-8px) !important;
+}
+
+.ui.items > .item > .image {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+.ui.items > .item > .content > .header {
+  font-family: 'Cormorant Garamond', serif !important;
+  color: var(--vb-dark) !important;
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 0.5rem !important;
+  transition: color 0.3s ease !important;
+}
+
+.ui.items > .item > .content > .header:hover {
+  color: var(--vb-amber-dark) !important;
+}
+
+.ui.items > .item > .content > .meta {
+  color: var(--vb-bronze) !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 1.5px !important;
+  margin-bottom: 1rem !important;
+}
+
+.ui.items > .item > .content > .description {
+  color: var(--vb-dark-medium) !important;
+  line-height: 1.8 !important;
+  font-size: 1.05rem !important;
+}
+
+.ui.items > .item > .content > .description b {
+  color: var(--vb-amber-dark) !important;
+  font-size: 1.6rem !important;
+  font-family: 'Cormorant Garamond', serif !important;
+  font-weight: 700 !important;
+}
+
+/* ========================================
+   LABELS - COLORÉS
+   ======================================== */
+.ui.label {
+  background: linear-gradient(135deg, var(--vb-amber-dark) 0%, var(--vb-amber) 100%) !important;
+  color: white !important;
+  border-radius: 20px !important;
+  padding: 0.6rem 1.2rem !important;
+  font-weight: 600 !important;
+  border: none !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.ui.label.green {
+  background: linear-gradient(135deg, var(--vb-olive) 0%, var(--vb-sage) 100%) !important;
+}
+
+.ui.label.blue {
+  background: linear-gradient(135deg, #4A90E2 0%, #7CB3FF 100%) !important;
+}
+
+.ui.label.yellow {
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%) !important;
+}
+
+.ui.label.olive {
+  background: linear-gradient(135deg, var(--vb-olive) 0%, var(--vb-sage-light) 100%) !important;
+}
+
+/* ========================================
+   FORMS - INPUTS ÉLÉGANTS
+   ======================================== */
+.ui.form input[type="text"],
+.ui.form input[type="email"],
+.ui.form input[type="password"],
+.ui.form input[type="number"],
+.ui.form textarea,
+.ui.input input {
+  border: 2px solid var(--vb-beige) !important;
+  border-radius: 10px !important;
+  padding: 14px 18px !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 1rem !important;
+  transition: all 0.3s ease !important;
+  background: white !important;
+}
+
+.ui.form input:focus,
+.ui.form textarea:focus,
+.ui.input input:focus {
+  border-color: var(--vb-amber-dark) !important;
+  box-shadow: 0 0 0 4px rgba(217, 127, 61, 0.15) !important;
+  outline: none !important;
+}
+
+/* ========================================
+   SEGMENTS
+   ======================================== */
+.ui.segment {
+  background: white !important;
+  border-radius: 16px !important;
+  border: 2px solid var(--vb-beige) !important;
+  box-shadow: 0 4px 16px rgba(217, 127, 61, 0.08) !important;
+  padding: 2rem !important;
+}
+
+/* ========================================
+   MESSAGES
+   ======================================== */
+.ui.message {
+  border-radius: 12px !important;
+  border: none !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+}
+
+.ui.negative.message {
+  background: #ffe5e5 !important;
+  color: #c41e3a !important;
+}
+
+/* ========================================
+   LOADER
+   ======================================== */
+.ui.loader:before {
+  border-color: rgba(217, 127, 61, 0.15) !important;
+}
+
+.ui.loader:after {
+  border-color: var(--vb-amber-dark) transparent transparent !important;
+}
+
+/* ========================================
+   CONTAINER
+   ======================================== */
+.ui.container {
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
+}
+
+/* ========================================
+   LOGO
+   ======================================== */
+.logo-villa-bliss {
+  max-width: 280px !important;
+  display: block !important;
+  margin: 2rem auto 3rem auto !important;
+  filter: drop-shadow(0 8px 24px rgba(217, 127, 61, 0.3)) !important;
+  animation: logoFadeIn 1s ease-out !important;
+}
+
+@keyframes logoFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media screen and (max-width: 768px) {
+  .ui.menu .item {
+    padding: 0.8rem 1rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  .ui.items > .item > .content > .header {
+    font-size: 1.4rem !important;
+  }
+
+  .logo-villa-bliss {
+    max-width: 200px !important;
+  }
+}

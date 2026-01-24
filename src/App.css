@@ -1,82 +1,297 @@
+/* === VILLA BLISS - Styles principaux === */
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background: linear-gradient(to bottom, var(--color-cream) 0%, #19a817 50%, var(--color-beige) 100%);
 }
 
-.App-link {
-  color: #61dafb;
-}
-
+/* === CONTAINER === */
 .container {
   width: 90%;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: var(--spacing-md);
 }
 
 @media screen and (max-width: 768px) {
   .container {
-    width: 100%;
-  } 
+    width: 95%;
+    padding: var(--spacing-sm);
+  }
 }
 
-@keyframes App-logo-spin {
+/* === BOUTONS PERSONNALISÉS === */
+.button,
+button.ui.button {
+  background: var(--gradient-warm) !important;
+  color: white !important;
+  padding: 14px 28px !important;
+  margin: 8px 0;
+  border: none !important;
+  border-radius: 8px !important;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 1rem !important;
+  transition: all var(--transition-smooth) !important;
+  box-shadow: var(--shadow-md) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.button:hover,
+button.ui.button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg) !important;
+  background: linear-gradient(135deg, var(--color-amber) 0%, var(--color-amber-pale) 100%) !important;
+}
+
+.button:active,
+button.ui.button:active {
+  transform: translateY(0);
+}
+
+/* Bouton secondaire */
+button.ui.button.secondary {
+  background: var(--gradient-cool) !important;
+}
+
+button.ui.button.secondary:hover {
+  background: linear-gradient(135deg, var(--color-sage) 0%, var(--color-sage-pale) 100%) !important;
+}
+
+/* === NAVBAR PERSONNALISÉE === */
+.ui.menu {
+  background: rgba(0, 0, 0, 0.95) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: var(--shadow-dark) !important;
+  margin: 0 !important;
+  padding: 0.5rem 0 !important;
+}
+
+.ui.menu .item {
+  color: var(--color-cream) !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 1rem !important;
+  padding: 1rem 1.5rem !important;
+  transition: all var(--transition-fast) !important;
+}
+
+.ui.menu .item:hover {
+  background: var(--gradient-warm) !important;
+  color: white !important;
+}
+
+.ui.menu .item.header {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+}
+
+/* Dropdown dans la navbar */
+.ui.menu .ui.dropdown .menu {
+  background: var(--color-dark-soft) !important;
+  border: 1px solid var(--color-amber-dark) !important;
+  border-radius: 8px !important;
+  box-shadow: var(--shadow-lg) !important;
+  margin-top: 0.5rem !important;
+}
+
+.ui.menu .ui.dropdown .menu .item {
+  color: var(--color-cream) !important;
+  border-top: 1px solid rgba(217, 127, 61, 0.2) !important;
+}
+
+.ui.menu .ui.dropdown .menu .item:hover {
+  background: var(--color-amber-dark) !important;
+  color: white !important;
+}
+
+/* === CARDS & ITEMS === */
+.ui.items > .item {
+  background: white;
+  padding: var(--spacing-md) !important;
+  margin: var(--spacing-md) 0 !important;
+  border-radius: 12px !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: all var(--transition-smooth) !important;
+  border: 1px solid var(--color-beige) !important;
+}
+
+.ui.items > .item:hover {
+  box-shadow: var(--shadow-lg) !important;
+  transform: translateY(-4px);
+  border-color: var(--color-amber-light) !important;
+}
+
+.ui.items > .item > .image {
+  border-radius: 8px !important;
+  overflow: hidden;
+}
+
+.ui.items > .item > .content > .header {
+  font-family: 'Cormorant Garamond', serif !important;
+  color: var(--color-dark) !important;
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.ui.items > .item > .content > .header:hover {
+  color: var(--color-amber-dark) !important;
+}
+
+.ui.items > .item > .content > .meta {
+  color: var(--color-bronze) !important;
+  font-weight: 500 !important;
+  text-transform: uppercase;
+  font-size: 0.85rem !important;
+  letter-spacing: 1px;
+}
+
+.ui.items > .item > .content > .description {
+  color: var(--color-dark-medium) !important;
+  line-height: 1.7 !important;
+  margin-top: var(--spacing-sm) !important;
+}
+
+.ui.items > .item > .content > .description b {
+  color: var(--color-amber-dark) !important;
+  font-size: 1.3rem !important;
+  font-family: 'Cormorant Garamond', serif !important;
+}
+
+/* === LABELS === */
+.ui.label {
+  background: var(--gradient-warm) !important;
+  color: white !important;
+  border-radius: 20px !important;
+  padding: 0.5rem 1rem !important;
+  font-weight: 500 !important;
+  border: none !important;
+}
+
+.ui.label.green {
+  background: var(--gradient-cool) !important;
+}
+
+.ui.label.blue {
+  background: linear-gradient(135deg, #4A90E2 0%, #7CB3FF 100%) !important;
+}
+
+.ui.label.yellow {
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%) !important;
+}
+
+.ui.label.olive {
+  background: var(--gradient-cool) !important;
+}
+
+/* === MESSAGES === */
+.ui.message {
+  border-radius: 12px !important;
+  box-shadow: var(--shadow-sm) !important;
+  border: none !important;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.ui.negative.message {
+  background: #ffe5e5 !important;
+  color: #c41e3a !important;
+}
+
+/* === SEGMENTS === */
+.ui.segment {
+  border-radius: 12px !important;
+  border: 1px solid var(--color-beige) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+/* === LOADER === */
+.ui.loader:before {
+  border-color: rgba(217, 127, 61, 0.15) !important;
+}
+
+.ui.loader:after {
+  border-color: var(--color-amber-dark) transparent transparent !important;
+}
+
+/* === FORMS === */
+.ui.form input[type="text"],
+.ui.form input[type="email"],
+.ui.form input[type="password"],
+.ui.form textarea {
+  border: 2px solid var(--color-beige) !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  font-family: 'Montserrat', sans-serif !important;
+  transition: all var(--transition-fast) !important;
+}
+
+.ui.form input:focus,
+.ui.form textarea:focus {
+  border-color: var(--color-amber-dark) !important;
+  box-shadow: 0 0 0 3px rgba(217, 127, 61, 0.1) !important;
+}
+
+/* === LOGO === */
+.logo-villa-bliss {
+  max-width: 250px;
+  display: block;
+  margin: var(--spacing-lg) auto;
+  filter: drop-shadow(var(--shadow-md));
+  animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(-20px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.button {
-  background-color: #4CAF50;
-  color: white; /* text color */
-  padding: 14px 20px; /* Padding into button */
-  margin: 8px 0; /* Margin around button */
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
-.button {
-  background-color: #4CAF50;
-  color: white; /* text color */
-  padding: 14px 20px; /* Padding into button */
-  margin: 8px 0; /* Margin around button */
-  border: none;
-  cursor: pointer;
-  width: 100%;
+/* === RESPONSIVE === */
+@media screen and (max-width: 768px) {
+  .ui.menu .item {
+    padding: 0.8rem 1rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  .ui.items > .item > .content > .header {
+    font-size: 1.3rem !important;
+  }
+
+  .logo-villa-bliss {
+    max-width: 180px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
 }
 
-.button {
-  background-color: #4CAF50; /* Button color*/
-  color: white; /* Texte button color */
-  padding: 14px 20px; /* Padding into button */
-  margin: 8px 0; /* Margin around button */
-  border: none; /* No border */
-  cursor: pointer; 
-  width: 100%;
+/* === ANIMATIONS === */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.button:hover {
-  background-color: #45a049; 
+.animate-in {
+  animation: slideInUp 0.6s ease-out;
 }

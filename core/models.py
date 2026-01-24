@@ -6,16 +6,18 @@ from django.db.models.signals import post_save
 # Create your models here.
 
 CATEGORY_CHOICES = (
-        ('essential_oil', 'Essential Oil'),
-        ('diffuser', 'Diffuser'),
-        ('roll_on', 'Roll On'),
-        ('candles', 'Candles'),
+        ('huiles', 'Huiles Essentielles'),
+        ('meditation', 'Méditation'),
+        ('tisanes', 'Tisanes & Infusions'),
+        ('yoga', 'Yoga'),
+        ('aromatherapie', 'Aromathérapie'),
+        ('naturopathie', 'Naturopathie'),
 )
 
 LABEL_CHOICES = (
-    ('PR', 'Promotion'),
-    ('FA', 'Favorite'),
-    ('LC', 'Last Chance'),
+    ('NO', 'Nouveau'),
+    ('PO', 'Populaire'),
+    ('ES', 'Essentiel'),
 )
 
 ADDRESS_CHOICES = (
@@ -31,7 +33,7 @@ class Item(models.Model):
     price = models.FloatField()
     description = models.TextField(blank=True, null=True)
     discount_price = models.FloatField(blank=True, null=True)
-    image = models.ImageField()
+    image = models.ImageField(blank=True, null=True)
 
     def __str__(self):
         return self.title

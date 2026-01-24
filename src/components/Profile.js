@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {Menu, Container, Grid, Dimmer, Loader, Image, Message, Header, Segment, Card, Button, Label, Form, Checkbox, Select, Divider, Table} from 'semantic-ui-react';
 import {connect} from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { authAxios } from '../utils';
 import { addressListURL, countriesURL, addressDeleteURL, userIdURL ,addressCreateURL, addressUpdateURL , paymentListURL, orderListURL } from '../constants';
 
@@ -73,7 +73,7 @@ const OrderHistory = () => {
     const renderOrderDesc = (order_items) => {
         let desc = "";
         order_items.forEach(order_item => {
-            desc += `${order_item.item.title} X ${order_item.quantity} => ${order_item.final_price}, `;
+            desc += `${order_item.item.title} X ${order_item.quantity}, `;
         })
         return desc;
     }
@@ -424,7 +424,7 @@ function Profile(props) {
         </React.Fragment>
     )}
 
-    if(!isAuthenticated) return <Redirect to="/login" />
+    if(!isAuthenticated) return <Navigate to="/login" replace />
 
     return (
             <Grid container divided columns={2} >

@@ -1,5 +1,5 @@
 import React , {useEffect} from 'react';
-import { Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Home from './components/Home';
@@ -11,6 +11,8 @@ import OrderSummary from './components/OrderSummary';
 import Profile from './components/Profile';
 import wrappedForm from './components/Checkout';
 import Products from './components/Products';
+import './App.css';
+import './villa-bliss-theme.css';
 
 
 function App(props) {
@@ -21,17 +23,19 @@ function App(props) {
   });
 
   return (
-    
+
     <div className="App">
       <Navbar/>
-    <Route exact path="/" component={Home} />
-     <Route path="/login" component={Login} />
-     <Route path = "/signup" component = {Signup} />
-     <Route path="/product/:id" component={ProductDetail} />
-     <Route path="/order-summary" component={OrderSummary} />
-     <Route path="/profile" component={Profile} />
-     <Route path="/checkout" component={wrappedForm} />
-     <Route path="/products" component={Products} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/order-summary" element={<OrderSummary />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/checkout" element={<wrappedForm />} />
+        <Route path="/products" element={<Products />} />
+      </Routes>
     </div>
   );
 }

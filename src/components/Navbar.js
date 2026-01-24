@@ -13,54 +13,25 @@ function Navbar(props) {
     console.log(cart);
 
     return (
-     
+
         <Menu>
         <Container>
             <Link to="/">
-            <Menu.Item header name='home'/>
+            <Menu.Item header name='Accueil'/>
             </Link>
 
             <Link to="/products">
-            <Menu.Item header name='Products'/>
+            <Menu.Item header name='Ressources'/>
             </Link>
 
         { authenticated ?(
             <React.Fragment>
             <Menu.Menu position="right">
             <Link to="/profile">
-            <Menu.Item position="right" name='Profile'/>
+            <Menu.Item position="right" name='Mon Profil'/>
             </Link>
 
-            <Dropdown 
-            icon="cart"
-            text= { `${cart!= null ? cart.order_items.length : '0'} `}
-            className='link item'
-            pointing
-            >
-            <Dropdown.Menu>
-            { cart !== null ?(
-                <React.Fragment>
-                    { cart.order_items.map(order_item =>(
-                         <Dropdown.Item key={order_item.id}>
-                            {order_item.quantity} x {order_item.item.title} 
-                         </Dropdown.Item>
-                        )
-                    )}
-                    { cart.order_items.length < 1 ? (
-                        <Dropdown.Item>No items in your cart</Dropdown.Item>
-                    ) : null}
-                    <DropdownDivider />
-                    <Link to="/order-summary"><Dropdown.Item text="Checkout" icon="arrow right" /></Link>
-                    </React.Fragment>
-
-            ) : (
-            <Dropdown.Item>No items in your cart</Dropdown.Item>
-             ) }
-            
-            </Dropdown.Menu>
-            </Dropdown>
-        
-            <Menu.Item header onClick={logout} name="Logout" style={{cursor : 'pointer'}} position="right" />
+            <Menu.Item header onClick={logout} name="Déconnexion" style={{cursor : 'pointer'}} position="right" />
 
             </Menu.Menu>
         </React.Fragment>
@@ -68,16 +39,16 @@ function Navbar(props) {
         ) : (
             <Menu.Menu position="right">
                 <Link to="/login">
-                  <Menu.Item header>Login</Menu.Item>
+                  <Menu.Item header>Connexion</Menu.Item>
                 </Link>
                 <Link to="/signup">
-                  <Menu.Item header>Signup</Menu.Item>
+                  <Menu.Item header>Inscription</Menu.Item>
                 </Link>
               </Menu.Menu>
         )}
         </Container>
       </Menu>
- 
+
     )
 }
 

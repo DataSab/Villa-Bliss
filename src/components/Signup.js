@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 import {connect} from 'react-redux';
 import {authSignup} from '../store/actions/auth';
-import {Redirect, NavLink} from 'react-router-dom';
-import logo from '../logo.svg';
+import {Navigate, NavLink} from 'react-router-dom';
 
 const Signup = (props) => {
 
@@ -33,70 +32,78 @@ const Signup = (props) => {
         }));
     }
 
-if(token) {return <Redirect to="/" /> }
+if(token) {return <Navigate to="/" replace /> }
 else{
    return ( 
 
   <React.Fragment>
-  
+
   <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
     <Grid.Column style={{ maxWidth: 450 }}>
-    {error && errors.map(err =>(<Message negative>{err}</Message>) )}
-      <Header as='h2' color='teal' textAlign='center'>
-        <Image src={logo} /> Sign up to your account
+      <Header as='h2' textAlign='center' style={{
+        fontFamily: 'Cormorant Garamond, serif',
+        fontSize: '2.5rem',
+        color: '#000000',
+        marginBottom: '2rem'
+      }}>
+        <img src="/images/logo-villa-bliss.jpeg" alt="Villa Bliss" style={{ maxWidth: '150px', marginBottom: '1rem' }} />
+        <div>Créer votre compte</div>
       </Header>
+
+      {error && errors.map((err, index) =>(<Message negative key={index}>{err}</Message>) )}
 
       <Form size='large' onSubmit= {handleSubmit} >
         <Segment stacked>
           <Form.Input
            fluid
            name='username'
-           icon='user' 
-           iconPosition='left' 
-           placeholder='username'
+           icon='user'
+           iconPosition='left'
+           placeholder="Nom d'utilisateur"
            value = {user.username}
            onChange = {handleChange}
             />
-       
-          <Form.Input
-            fluid
-            name ='password1'
-            icon='lock'
-            iconPosition='left'
-            placeholder='Password'
-            type='password'
-            value = {user.password1}
-            onChange = {handleChange}
-          />
-          <Form.Input
-           fluid
-           name='password2'
-           icon='user' 
-           iconPosition='left' 
-           type="password"
-           placeholder='Confirm password'
-           value = {user.password2}
-           onChange = {handleChange}
-            />
+
           <Form.Input
             fluid
             name ='email'
-            icon='lock'
+            icon='mail'
             iconPosition='left'
-            placeholder='Email Address'
+            placeholder='Adresse email'
             type='email'
             value = {user.email}
             onChange = {handleChange}
           />
 
-          <Button color='teal' fluid size='large' disabled={loading} loading={loading} >
-            Sign up
+          <Form.Input
+            fluid
+            name ='password1'
+            icon='lock'
+            iconPosition='left'
+            placeholder='Mot de passe'
+            type='password'
+            value = {user.password1}
+            onChange = {handleChange}
+          />
+
+          <Form.Input
+           fluid
+           name='password2'
+           icon='lock'
+           iconPosition='left'
+           type="password"
+           placeholder='Confirmer le mot de passe'
+           value = {user.password2}
+           onChange = {handleChange}
+            />
+
+          <Button primary fluid size='large' disabled={loading} loading={loading} >
+            {loading ? 'Création...' : "S'inscrire"}
           </Button>
         </Segment>
       </Form>
       <Message>
-      Already have a account? <NavLink to='/login'>Log in</NavLink>
-       
+        Vous avez déjà un compte ? <NavLink to='/login'>Se connecter</NavLink>
       </Message>
     </Grid.Column>
   </Grid>
