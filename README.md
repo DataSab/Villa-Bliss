@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://zupimages.net/up/24/06/1e99.png" alt="Villa Bliss Logo"/>
+  <img src="public/images/logo-villa-bliss.jpeg" alt="Villa Bliss Logo"/>
   <h1 align="center">Villa Bliss</h1>
   <p align="center">Votre havre de paix pour le bien-\u00eatre</p>
   <p align="center">
