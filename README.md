@@ -14,9 +14,9 @@ Le tout dans une ambiance **douce, apaisante et accessible à tous**, sans prér
 
 Vous y trouverez :
 
-- 🌿 des conseils en aromathérapie  
-- 🍵 des recettes de tisanes et préparations naturelles  
-- 🌸 des contenus pour ralentir, respirer et prendre soin de soi  
+- 🌿 Des conseils en aromathérapie  
+- 🍵 Des recettes de tisanes et préparations naturelles  
+- 🌸 Des contenus pour ralentir, respirer et prendre soin de soi  
 
 
 <p align="center">───── ✧ ─────</p>
