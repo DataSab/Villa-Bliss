@@ -11,31 +11,16 @@ make_refund_accepted.short_description = 'Update orders to refund granted'
 class OrderAdmin(admin.ModelAdmin):
     list_display = [
         'user',
-        'ordered',
-        'being_delivered',
-        'received',
-        'refund_requested',
-        'refund_granted',
-        'shipping_address',
-        'billing_address',
-        'coupon',
-        'payment'
+
     ]
 
     list_filter = [
-        'ordered',
-        'being_delivered',
-        'received',
-        'refund_requested',
-        'refund_granted',
+       
     ]
 
     list_display_links = [
         'user',
-        'shipping_address',
-        'billing_address',
-        'coupon',
-        'payment'
+      
     ]
 
     search_fields = [
@@ -47,12 +32,7 @@ class OrderAdmin(admin.ModelAdmin):
 class AddressAdmin(admin.ModelAdmin):
     list_display = [
         'user',
-        'street_address',
-        'apartment_address',
-        'country',
-        'zip',
-        'address_type',
-        'default'
+        
     ]
 
     list_filter = [
@@ -81,10 +61,6 @@ class VariationAdmin(admin.ModelAdmin):
 admin.site.register(Item)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(OrderItem)
-admin.site.register(Coupon)
-admin.site.register(Address, AddressAdmin)
-admin.site.register(Payment)
-admin.site.register(Refund)
 admin.site.register(UserProfile)
 admin.site.register(ItemVariation, ItemVariationAdmin)
-admin.site.register(Variation, VariationAdmin)
+
