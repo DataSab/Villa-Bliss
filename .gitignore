@@ -1,45 +1,32 @@
-react-frontend/.gitignore
-# Fichiers de configuration système
-*.pyc
-*.pyo
-*.pyd
-__pycache__/
-
+# ============================================
+# FICHIERS SYSTÈME
+# ============================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
 Zone.Identifier
-__Pycache__
-
-# Fichiers de sauvegarde et fichiers temporaires
-*.bak
-*.swp
-*~
-
-# Environnements virtuels
-venv/
-
-.env
-.flake8
-HOB_env
-__pycache__
-__init__.py
-
-
-node_modules
 zone.identifier
-package-lock.json
+*Zone.Identifier
 
-HOB_env
-# Dépendances Node
-/node_modules/
+# ============================================
+# PYTHON / DJANGO
+# ============================================
 
-# Base de données
-/db.sqlite3
-
-# Bytecode Python
+# Bytecode
 __pycache__/
+*.py[cod]
+*$py.class
 *.pyc
 *.pyo
 *.pyd
 .Python
+
+# Distribution / packaging
 build/
 develop-eggs/
 dist/
@@ -51,56 +38,223 @@ lib64/
 parts/
 sdist/
 var/
+wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
-# Fichiers de configuration d'environnement
-.env
-/static_in_env
-
-# Dossiers de médias
-/media_root/
-
-# Fichiers et dossiers spécifiques à l'IDE
-.idea/
-.vscode/
-*.swp
-
-# Fichiers de log
+# Django
 *.log
-
-# Dossiers de build
-/build/
-/dist/
-
-# Autres fichiers et dossiers
-*.tar.gz
-*.zip
-*.sqlite3
-test.html
+local_settings.py
 db.sqlite3
-.DS_Store
-.ipynb_checkpoints/
-.mypy_cache/
-.pytest_cache/  
-DocSab/venv/
-__pycache__/
-*.class
-*.jar
-*.war
-*.ear
-hs_err_pid*
-*.log
-*.pid   
-*.seed
+db.sqlite3-journal
+*.sqlite3
+
+# Base de données
+/db.sqlite3
+*.db
+
+# Environnement Django
+.env
+.env.local
+.env.*.local
+*.env
+
+# Migrations (optionnel - décommenter si vous voulez ignorer)
+# */migrations/*.py
+# !*/migrations/__init__.py
+
+# Static files
+/static_in_env/
+/staticfiles/
+/static/
+
+# Media files
+/media_root/
+/media/
+
+# ============================================
+# REACT / NODE.JS
+# ============================================
+
+# Dependencies
+node_modules/
+/node_modules
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
 *.coverage
-*.mochitest
-*.coveragerc
-*.code-workspace    
+.mochitest
+.coveragerc
+
+# Production build
+/build
+/dist
+
+# Cache
+.cache/
+.eslintcache
+.npm
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+node_modules/.cache/
+
+# Misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*    
+lerna-debug.log*
+.pnpm-debug.log*
 
+# Lock files (optionnel - garder si vous travaillez en équipe)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ============================================
+# ENVIRONNEMENTS VIRTUELS PYTHON
+# ============================================
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+HOB_env/
+DocSab/venv/
+
+# ============================================
+# IDE / ÉDITEURS
+# ============================================
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# PyCharm / IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# ============================================
+# AI TOOLS
+# ============================================
+.claude/
+.gemini/
+
+# ============================================
+# FICHIERS TEMPORAIRES / BACKUP
+# ============================================
+*.bak
+*.tmp
+*.temp
+*~
+*.orig
+*.rej
+
+# ============================================
+# TESTING / COVERAGE
+# ============================================
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ipynb_checkpoints/
+
+# ============================================
+# COMPILATION / BUILD
+# ============================================
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.dylib
+
+# ============================================
+# ARCHIVES
+# ============================================
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.tar.gz
+*.zip
+*.war
+*.ear
+
+# ============================================
+# LOGS / PID
+# ============================================
+*.log
+*.pid
+*.seed
+*.out
+pids
+logs
+
+# ============================================
+# SÉCURITÉ / CREDENTIALS
+# ============================================
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.cert
+secrets.json
+credentials.json
+
+# Stripe keys
+stripe_keys.json
+
+# ============================================
+# DOSSIERS SPÉCIFIQUES AU PROJET
+# ============================================
 DocSab/
+test.html
+react-frontend/.gitignore
+
+# ============================================
+# AUTRES
+# ============================================
+hs_err_pid*
+*.pid
+replay_pid*
