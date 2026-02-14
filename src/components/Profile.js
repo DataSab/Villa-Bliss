@@ -120,17 +120,17 @@ const AddressForm = (props) => {
     });
 
     useEffect(()=> {
-        if(form_type == UPDATE_FORM){
+        if(form_type === UPDATE_FORM){
             setFormData(address);
         }
-    },[])
+    },[form_type, address])
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(form_type == CREATE_FORM){
+        if(form_type === CREATE_FORM){
             handleCreateAddress();
         }
-        else if(form_type == UPDATE_FORM){
+        else if(form_type === UPDATE_FORM){
             handleUpdateAddress();
         }
     }
@@ -165,7 +165,7 @@ const AddressForm = (props) => {
         authAxios.post(addressCreateURL, {
             ...formData,
             user : user_id,
-            address_type : activeItem == "billingAddress" ? "B" : "S"
+            address_type : activeItem === "billingAddress" ? "B" : "S"
         }).then(res => {
             setFormData({
                 id : "",
@@ -190,7 +190,7 @@ const AddressForm = (props) => {
         authAxios.put(addressUpdateURL(formData.id), {
             ...formData,
             user : user_id,
-            address_type : activeItem == "billingAddress" ? "B" : "S"
+            address_type : activeItem === "billingAddress" ? "B" : "S"
          }).then(res=>{
             // setFormData({
             //     id : "",
@@ -205,7 +205,6 @@ const AddressForm = (props) => {
              setSaving(false);
              setSuccess(true);
              callback();
-             console.log(success);
          }).catch(error => {
              setError(error.response.data);
          })
@@ -298,12 +297,10 @@ function Profile(props) {
     const handleFetchAddresses = () => {
         const address_type = activeItem === 'billingAddress' ? 'B' : 'S';
         setLoading(true);
-        console.log(address_type);
         authAxios.get(addressListURL(address_type)
         ).then(res => {
             setAddresses(res.data);
             setLoading(false);
-            console.log(res.data);
         }).catch(error => {
             setError(error.response.data.message);
             setLoading(false);
@@ -354,10 +351,10 @@ function Profile(props) {
     }
 
     const handleGetActiveItem = () => {
-        if(activeItem == 'billingAddress'){
+        if(activeItem === 'billingAddress'){
             return "Billing Address";
-        } 
-        else if(activeItem == 'shippingAddress'){
+        }
+        else if(activeItem === 'shippingAddress'){
             return "Shipping Address";
         }
     }
@@ -402,7 +399,7 @@ function Profile(props) {
 
     { addresses && addresses.length > 0 ? <Divider /> : null}
 
-    {selectedAddress == null  ? (
+    {selectedAddress === null  ? (
         <AddressForm
             form_type = {CREATE_FORM}
             user_id = {userId}
@@ -469,18 +466,18 @@ function Profile(props) {
                         />
                         <Menu.Item
                         name="orderHistory"
-                        active ={activeItem == "orderHistory"}
+                        active ={activeItem === "orderHistory"}
                         onClick = {()=>handleItemClick("orderHistory")}
                         />
                     </Menu>
                     </Grid.Column>
 
                     <Grid.Column width={10}>
-                        <Header>{handleGetActiveItem}</Header>
+                        <Header>{handleGetActiveItem()}</Header>
                         {activeItem === "paymentHistory" ? (
                             <PaymentList/>
                         ):
-                        activeItem == "orderHistory"  ? (
+                        activeItem === "orderHistory"  ? (
                             <OrderHistory/>
                         ) :(
                         renderAddresses() 

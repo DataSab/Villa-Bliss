@@ -6,6 +6,7 @@ import { Container, Message, Segment , Item, Dimmer, Loader, Image, Button, Icon
 import {authAxios} from '../utils';
 import {addToCartURL} from '../constants';
 import { fetchCart } from '../store/actions/cart';
+import { useParams } from 'react-router-dom';
 
 function ProductDetail(props) {
 
@@ -16,20 +17,20 @@ function ProductDetail(props) {
     const [formData, setFormData] = useState({});
     const [success, setSuccess] = useState(null);
     const [image, setImage] = useState('');
+    const { id } = useParams();
 
     useEffect(() => {
         setLoading(true);
-        const id = props.match.params.id;
         axios.get(productDetailURL(id)).then(res => {
             setProduct(res.data);
             setLoading(false);
         }).catch(error =>{
             console.log(error.response);
-            setError(error.res.message);
+            setError(error.response?.data?.message || 'Une erreur est survenue');
             setLoading(false);
         });
-        
-    }, []);
+
+    }, [id]);
 
     const handleFormToggle = ()=>{
         if(props.isAuthenticated){
@@ -55,7 +56,7 @@ function ProductDetail(props) {
             setError('');
         }).catch(error =>{
             console.log(error);
-            if(error.response.status == 401){
+            if(error.response.status === 401){
             window.location = "/login";
             }
             setLoading(false);
@@ -115,7 +116,7 @@ function ProductDetail(props) {
                 <Grid.Column>
                 <Card
                 fluid
-                image={image == ''? product.image : image}
+                image={image === ''? product.image : image}
                 header={product.title}
                 meta={
                     <React.Fragment>
@@ -144,7 +145,7 @@ function ProductDetail(props) {
             {formVisible && (
                 <React.Fragment>
                 <form onSubmit={(e)=>handleAddtoCart(e, product.slug)}>
-                    {product.variations.map(v => {
+                    {product.variations && product.variations.map(v => {
                         const name = v.name.toLowerCase();
                         return(
                             <Form.Field key={v.id}>

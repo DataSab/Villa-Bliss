@@ -146,7 +146,7 @@ function Checkout(props) {
                     setData(res.data);
                     setLoading(false);
             }).catch(error =>{
-                    if(error.response.status == 404){
+                    if(error.response.status === 404){
                         setError('You do not have an active order');
                         setLoading(false);
                     }
@@ -158,7 +158,7 @@ function Checkout(props) {
             }
 
     const handleSelectChange = (e, {name, value}) => {
-        if (name == "selectedBillingAddress" ){
+        if (name === "selectedBillingAddress" ){
             setSelectedBillingAddress(value);
         }
         else{
@@ -169,7 +169,6 @@ function Checkout(props) {
     const handleAddCoupon = (e, code) => {
         setLoading(true);
         e.preventDefault();
-        console.log(code);
         authAxios.post(addCouponURL, {
             'code' : code
         }).then(res =>{
@@ -178,12 +177,12 @@ function Checkout(props) {
             handleFetchOrder();
         }).catch(error =>{
             setLoading(false);
-            setError(error.response.dadta.message);
+            setError(error.response?.data?.message || 'Erreur lors de l\'ajout du coupon');
         })
     }
 
     const handlePaymentSubmit = () => {
-        if(selectedBillingAddress == "" || selectedShippingAddress == ""){
+        if(selectedBillingAddress === "" || selectedShippingAddress === ""){
             setError('Please enter addresses');
         }
         else{

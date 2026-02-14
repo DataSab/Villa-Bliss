@@ -20,7 +20,7 @@ const Login = (props) => {
     }
 
     const handleChange = (e) =>{
-        if (e.target.name == 'email'){
+        if (e.target.name === 'email'){
         setEmail(e.target.value);
         }
         else {

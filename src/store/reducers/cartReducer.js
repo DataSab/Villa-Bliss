@@ -40,7 +40,7 @@ const cartReducer = (state= initialstate, action) => {
         return cartStart(state, action);
     case actionTypes.CART_SUCCESS:
         return cartSuccess(state, action);
-    case actionTypes.CART_SUCCESS:
+    case actionTypes.CART_FAIL:
         return cartFail(state,action);
     default:
         return state;

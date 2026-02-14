@@ -18,9 +18,8 @@ import './villa-bliss-theme.css';
 function App(props) {
 
   useEffect(() => {
-    console.log(props.isAuthenticated);
     props.onTryAutoSignup();
-  });
+  }, [props.onTryAutoSignup]);
 
   return (
 

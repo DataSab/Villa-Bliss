@@ -25,7 +25,7 @@ function OrderSummary(props) {
             setData(res.data);
             setLoading(false);
         }).catch(error =>{
-            if(error.response.status == 404){
+            if(error.response.status === 404){
                 setError('You do not have an active order');
                 setLoading(false);
             }
@@ -133,7 +133,7 @@ if(!isAuthenticated) { return <Navigate to="/login" replace /> }
 
         
             <Table.Body>
-            { data.order_items && data.order_items.length != 0 ? data.order_items.map((order_item, i)=>(
+            { data.order_items && data.order_items.length !== 0 ? data.order_items.map((order_item, i)=>(
 
             
                 <Table.Row key={order_item.id}>
@@ -169,8 +169,8 @@ if(!isAuthenticated) { return <Navigate to="/login" replace /> }
             <Table.Row style={{marginTop  : '50px'}} >Aucune ressource dans votre sélection</Table.Row>
             }
 
-            </Table.Body> 
-        { data.order_items && data.order_items.length != 0 &&  (
+            </Table.Body>
+        { data.order_items && data.order_items.length !== 0 &&  (
             <Table.Footer>
                 <Table.Row>
                 <Table.HeaderCell colSpan="4">

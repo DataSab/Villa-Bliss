@@ -10,7 +10,6 @@ function Navbar(props) {
     useEffect(()=>{
         fetchCart();
     },[]);
-    console.log(cart);
 
     return (
 
